@@ -1,0 +1,59 @@
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem 5rem;
+    z-index: 1000;
+    background-color: white;
+    border-radius: 0.5rem;
+    height: auto;
+  }
+  
+  .i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    margin: 1rem;
+  }
+  
+  .title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .butt {
+    border: outset 1px white;
+    background-color: black;
+    border-radius: 8px;
+ 
+    font-weight: 400;
+    font-size: 1em;
+    color: white;
+   
+    transition: 0.1s;
+    padding: 10px;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .butt:hover {
+    cursor: pointer;
+  }

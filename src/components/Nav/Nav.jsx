@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import Searchbar from "../Searchbar/Searchbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import logo from "../../images/HCoutureLogo.png";
 
@@ -29,14 +28,7 @@ const Nav = () =>
             </a>
           </div>
         )}
-        <Searchbar />
-        <div>
-          {/* <Link to={"/"}>
-            <span className="btn btn-ghost bg-normal-case hover:bg-purple-500  bg-purple-600 text-white text-base   ">
-              Products
-            </span>
-          </Link> */}
-        </div>
+
         {!isAuthenticated && (
           <div>
             <Link to={"/registerUser"}>
@@ -85,8 +77,13 @@ const Nav = () =>
                   </span>
                   <div className="card-actions">
                     <button className="btn btn-primary  btn-block">
-                      View Cart
+                      Ver Carrito
                     </button>
+                    <Link to={"/favorites"}>
+                      <button className="btn btn-primary  btn-block">
+                        Ver Favoritos
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

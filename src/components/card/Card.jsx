@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const Card = ({ name, image, brand, unitPrice, id }) =>
 {
   return (
     <div className="card  w-96  bg-base-100 shadow-xl m-8">
+      <div className="flex justify-end mr-4 mt-4 ">
+        <button className="hover:first:text-red-400 mr-2 mt-2">
+          <FontAwesomeIcon icon={regular('heart')} />
+        </button>
+      </div>
       <figure className="mt-5">
         <Link to={`/products/${id}`}>
           <img className="h-56 w-56" src={image} alt="Not found" width={350} height={400} />

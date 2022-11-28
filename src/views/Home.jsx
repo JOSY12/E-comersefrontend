@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../redux/actions";
+import
+  {
+    getProducts,
+    Clearproduct,
+    currentPagePaginated,
+  } from "../redux/actions";
 import Card from "../components/card/Card";
 import FilterContainer from "../components/filter/FilterContainer";
 import Paginated from "../components/paginated/Paginated";
 import BestProducts from "../components/BestProducts/BestProducts";
-import { Clearproduct } from "../redux/actions";
+
 const Home = () =>
 {
   const dispatch = useDispatch();
   const { filteredProducts: products } = useSelector((state) => state.products);
+  const { page } = useSelector((state) => state.page);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(page);
   const [productsByPage, setProductsByPage] = useState(8);
 
   const indexLastProduct = currentPage * productsByPage;
@@ -23,6 +29,7 @@ const Home = () =>
 
   const paginated = (numPage) =>
   {
+    dispatch(currentPagePaginated(numPage));
     setCurrentPage(numPage);
   };
 
@@ -30,6 +37,8 @@ const Home = () =>
   {
     dispatch(Clearproduct());
     dispatch(getProducts());
+
+    //dispatch(currentPagePaginated());
   }, [dispatch]);
 
   return (

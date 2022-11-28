@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
+import
+{
   byOrderProducts,
   byOrderPrice,
   byCategory,
@@ -11,13 +9,16 @@ import {
   getBrand,
   byBrand,
 } from "../../redux/actions";
+import Searchbar from "../Searchbar/Searchbar";
 
-const FilterContainer = () => {
+const FilterContainer = () =>
+{
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
   const { brands } = useSelector((state) => state.brands);
 
-  useEffect(() => {
+  useEffect(() =>
+  {
     dispatch(getCategories());
     dispatch(getBrand());
   }, [dispatch]);
@@ -25,22 +26,26 @@ const FilterContainer = () => {
   const category = [...new Set(categories.map((el) => el.name))];
   const brand = [...new Set(brands.map((el) => el.name))];
 
-  const handleByOrder = (e) => {
+  const handleByOrder = (e) =>
+  {
     e.preventDefault();
     dispatch(byOrderProducts(e.target.value));
   };
 
-  const handleByOrderPrice = (e) => {
+  const handleByOrderPrice = (e) =>
+  {
     e.preventDefault();
     dispatch(byOrderPrice(e.target.value));
   };
 
-  const handleByCategory = (e) => {
+  const handleByCategory = (e) =>
+  {
     e.preventDefault();
     dispatch(byCategory(e.target.value));
   };
 
-  const handleByBrand = (e) => {
+  const handleByBrand = (e) =>
+  {
     e.preventDefault();
     dispatch(byBrand(e.target.value));
   };
@@ -53,7 +58,7 @@ const FilterContainer = () => {
           className="select min-w-0 btn-ghost"
         >
           <option disabled selected>
-            Categories
+            Categorías
           </option>
           <option value="All">All</option>
           {category.map((el) => (
@@ -67,7 +72,7 @@ const FilterContainer = () => {
           className="select min-w-0 btn-ghost"
         >
           <option disabled selected>
-            Brand
+            Marcas
           </option>
           <option value="All">All</option>
           {brand.map((el) => (
@@ -81,7 +86,7 @@ const FilterContainer = () => {
           onChange={(e) => handleByOrderPrice(e)}
         >
           <option disabled selected>
-            Price
+            Precio
           </option>
           <option value="MaxPrice">Max</option>
           <option value="MinPrice">Min</option>
@@ -93,11 +98,14 @@ const FilterContainer = () => {
           onChange={(e) => handleByOrder(e)}
         >
           <option disabled selected>
-            Order
+            Orden
           </option>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
         </select>
+      </div>
+      <div className="mb-2">
+        <Searchbar />
       </div>
     </div>
   );

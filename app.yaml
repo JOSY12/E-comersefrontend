@@ -1,0 +1,10 @@
+runtime: nodejs16
+env: standard
+
+service: h-couture
+handlers:
+- url: /.*
+  script: auto
+
+
+

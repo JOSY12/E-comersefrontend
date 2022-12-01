@@ -25,7 +25,7 @@ function ProtectedRoutes() {
   // QUE TENGA TODOS LOS CAMPOS NECESARIOS LLENOS
   return (
     
-    isAuthenticated && userLogged.active ? (
+    isAuthenticated  ? (
     <Outlet />
     ) : isLoading ? 
     ( <div
@@ -38,10 +38,7 @@ function ProtectedRoutes() {
       >
       <ClipLoader color="#ef8354" size={70} margin={10} />
       </div>
-    ) : !userLogged.active? 
-    (
-      <BlockPopUp/>
-    )
+    ) 
     :
     (
     <LoginPopup userDetail={userLogged }/>

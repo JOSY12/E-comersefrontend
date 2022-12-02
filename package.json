@@ -41,7 +41,7 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://pf-ecommerce-ft-30-b-odxfhjkfia-uc.a.run.app/",
+  "proxy": "https://tpfback-production.up.railway.app/",
   "browserslist": {
     "production": [
       ">0.2%",

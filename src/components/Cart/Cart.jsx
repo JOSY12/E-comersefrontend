@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleancart } from "../../redux/actions";

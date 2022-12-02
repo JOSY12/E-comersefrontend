@@ -1,7 +1,4 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,6 +11,7 @@ const validationsForms = (form) => {
   let errors = {};
 
   let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
   let regexNum = /^[0-9]*$/;
   let regexImage = /.*(png|jpg|jpeg|)$/;
   let regexUrl =

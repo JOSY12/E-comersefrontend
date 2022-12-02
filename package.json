@@ -29,7 +29,7 @@
     "webpack": "^5.75.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node index.js",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

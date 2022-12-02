@@ -5,7 +5,8 @@ const userSlice = createSlice({
   initialState: {
     isAuthenticated: false,
     loggedUser: {},
-    favorites: []
+    favorites: [],
+    countries: [],
   },
   reducers: {
     loggedUser: (state, action) =>
@@ -16,12 +17,17 @@ const userSlice = createSlice({
     getFavorites: (state, action) =>
     {
       state.favorites = action.payload;
+    },
+    getCountries: (state, action) =>
+    {
+      state.countries = action.payload;
     }
   }
 });
 
 export const {
   loggedUser,
-  getFavorites
+  getFavorites,
+  getCountries
 } = userSlice.actions;
 export default userSlice.reducer;

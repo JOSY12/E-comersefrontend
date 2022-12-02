@@ -29,7 +29,8 @@ const Card = ({
     dispatch(deleteFavorites({ userId: loggedUser?.id, productId: id }));
   };
 
-  const userid = loggedUser.data?.id;
+  const userid = loggedUser?.id;
+
   const amoutstock = 1;
   const product = {
     id: id,

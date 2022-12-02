@@ -7,6 +7,7 @@ const CartSlice = createSlice({
     paymenturl: "",
     pagarcarrito: "",
     total: 0,
+    info: {},
   },
   reducers: {
     getusercart(state, action) {
@@ -36,6 +37,9 @@ const CartSlice = createSlice({
     clearlinks(state) {
       state.pagarcarrito = "";
     },
+    info(state, action) {
+      state.info = action.payload;
+    },
   },
 });
 
@@ -48,5 +52,6 @@ export const {
   totalapagar,
   comprartodolink,
   clearlinks,
+  info,
 } = CartSlice.actions;
 export default CartSlice.reducer;

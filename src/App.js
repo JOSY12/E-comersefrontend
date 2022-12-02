@@ -11,10 +11,14 @@ import AdminRoutes from "./AdminRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Nav from "./components/Nav/Nav";
 import Favorites from "./components/Favorites/Favorites";
-import RegisterUser from "./views/Register";
+import CompleteSignUp from "./views/CompleteSignUp";
 import { useDispatch, useSelector } from "react-redux";
-
+import CartPayments from "./components/Cart/CartPayments";
 import Cart from "./components/Cart/Cart";
+import CartPaymentspending from "./components/Cart/CartPaymentspending";
+import CartPaymentsfail from "./components/Cart/CartPaymentsfail";
+import ItemPayments from "./components/Cart/ItemPayments";
+
 function App() {
   const dispatch = useDispatch();
   const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
@@ -46,10 +50,13 @@ function App() {
         <Route path="/" element={<Nav />}>
           <Route path="/" element={<Home />} />
           <Route path="/addproduct" element={<CreateProduct />} />
-
           <Route path="/Products/:id" element={<ProductDetail />} />
-
-          <Route path="/registerUser" element={<RegisterUser />} />
+          <Route path="/completeSignUp" element={<CompleteSignUp />} />{" "}
+          <Route path="/payments/:id" element={<CartPayments />} />
+          <Route path="/ipayments/:id" element={<ItemPayments />} />
+          <Route path="/paymentsfail" element={<CartPaymentsfail />} />
+          <Route path="/paymentspending" element={<CartPaymentspending />} />
+          <Route path="/completeSignUp" element={<CompleteSignUp />} />
           <Route path="/Cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />
         </Route>

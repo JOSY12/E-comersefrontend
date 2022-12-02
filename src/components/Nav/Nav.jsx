@@ -21,8 +21,8 @@ const Nav = () => {
                 height: "fit-content",
                 objectFit: "cover",
               }}
-              src="/assets/images/HCoutureLogoNavidad.svg"
-              alt="logo de navidad"
+              src="/assets/images/HCoutureLogo.png"
+              alt=""
             />
           </Link>
         </div>

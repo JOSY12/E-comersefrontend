@@ -25,10 +25,10 @@ import {
   totalapagar,
   comprartodolink,
   clearlinks,
+  info,
 } from "../reducers/Cart";
 
-import { getFavorites, loggedUser } from "../reducers/userSlice";
-
+import { getFavorites, loggedUser, getCountries } from "../reducers/userSlice";
 export const getProducts = (userId) => async (dispatch) => {
   console.log({ userId });
   if (userId)
@@ -55,6 +55,21 @@ export const getBrand = () => async (dispatch) => {
     .get(`/products/brands`)
     .then((res) => dispatch(allBrands(res.data)))
     .catch((e) => console.log(e));
+};
+
+export const getCountry = () => async (dispatch) => {
+  axios
+    .get(`/country`)
+    .then((res) => dispatch(getCountries(res.data)))
+    .catch((e) => console.log(e));
+};
+
+export const completeSignUp = (userId, data) => async (dispatch) => {
+  await axios({
+    method: "PATCH",
+    url: `/user/${userId}`,
+    data: data,
+  }).catch((e) => console.log(e));
 };
 
 export const getUserFavorites = (userId) => async (dispatch) => {
@@ -156,6 +171,7 @@ export function getCurrentUser(user) {
 
     let json = await axios.post(`/user/login/`, user);
     dispatch(loggedUser(json.data?.data));
+    dispatch(getusercart(json.data?.data.cart.products));
   };
 }
 export const buyproduct = (quantity, id) => {
@@ -215,6 +231,14 @@ export const comprartodo = (userid) => {
   return async function (dispatch) {
     const url = await axios.post(`/store/buyall`, final);
     dispatch(comprartodolink(url.data));
+  };
+};
+
+export const Rectificar = () => {
+  return async function (dispatch) {
+    const url = await axios.get(`/store/payments`);
+    console.log("accion url" + url);
+    dispatch(info(url));
   };
 };
 

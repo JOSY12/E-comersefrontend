@@ -25,7 +25,7 @@ const ProductDetail = () => {
 
   // const email = loggedUser.data?.email;
   const productid = product.id;
-  const userid = loggedUser.data?.id;
+  const userid = loggedUser?.id;
 
   function agregarcarrito() {
     dispatch(addtocart(userid, productid, amoutstock, product));
@@ -39,6 +39,7 @@ const ProductDetail = () => {
   }
 
   useEffect(() => {
+    dispatch(buyproduct(amoutstock, id));
     dispatch(GetProductById(id));
   }, []);
 
@@ -59,7 +60,7 @@ const ProductDetail = () => {
           </div>
 
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <h2 className="text-sm  text-slate-700 title-font  tracking-widest mb-2 ">
+            <h2 className="text-sm  text-slate-700 font-bold title-font  tracking-widest mb-2 ">
               {product.brand ? product.brand.name : "no product brand found"}
             </h2>
             <h2 className="text-sm  text-slate-700 title-font  tracking-widest mb-2">
@@ -83,12 +84,12 @@ const ProductDetail = () => {
               <span className="badge   text-white bg-slate-400 border-0  ">
                 {product ? product.rating : "no product rate"}⭐
               </span>
-              <span className="title-font text-base text-slate-700  ml-4 ">
+              <span className="title-font text-base font-bold text-slate-700  ml-4 ">
                 Stock: {product ? product.stock : "no stock found"}
               </span>
             </div>
 
-            <p className="leading-relaxed text-slate-700 text-justify">
+            <p className="leading-relaxed text-slate-700 font-bold text-justify">
               {product ? product.description : "no Product description"}
             </p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
@@ -117,10 +118,10 @@ const ProductDetail = () => {
               <div className="flex-1 "></div>
               {isAuthenticated ? (
                 <button
+                  className="btn   ml-2 w-40 text-white text-base  bg-stone-400 hover:bg-stone-500 border-0   focus:outline-none rounded"
                   onClick={agregarcarrito}
-                  className="btn-wide   ml-2 w-40 text-white text-base  bg-stone-400 hover:bg-stone-500 border-0 py-2 px-2 focus:outline-none rounded"
                 >
-                  Agregar al carrito
+                  agregar al carrito
                 </button>
               ) : (
                 <button
@@ -135,8 +136,7 @@ const ProductDetail = () => {
                 <div>
                   <a
                     href={paymenturl}
-                    target={"_blank"}
-                    className="btn   ml-2 w-40 text-white text-base  bg-stone-400 hover:bg-stone-500 border-0 py-2 px-2 focus:outline-none rounded"
+                    className="btn   ml-2 w-40 text-white text-base  bg-stone-400 hover:bg-green-500 border-0 py-2 px-2 focus:outline-none rounded"
                   >
                     Comprar ahora
                   </a>
@@ -145,7 +145,7 @@ const ProductDetail = () => {
                 <div>
                   <a
                     onClick={loginWithPopup}
-                    className="btn   ml-2 w-40 text-white text-base  bg-stone-400 hover:bg-stone-500 border-0 py-2 px-2 focus:outline-none rounded"
+                    className="btn   ml-2 w-40 text-white text-base  bg-stone-400 hover:bg-green-500 border-0 py-2 px-2 focus:outline-none rounded"
                   >
                     Comprar ahora
                   </a>

@@ -236,7 +236,7 @@ export const comprartodo = (userid) => {
 
 export const Rectificar = () => {
   return async function (dispatch) {
-    const url = await axios.get(`/store/payments`);
+    const url = await axios.post(`/store/payments`);
     console.log("accion url" + url);
     dispatch(info(url));
   };

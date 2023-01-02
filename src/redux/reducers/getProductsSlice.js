@@ -6,8 +6,7 @@ const sortAndFilter = (
   categoryFilter,
   brandFilter,
   sortType
-) =>
-{
+) => {
   // Filtrar por nombre (campo de busqueda)
   let filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(nameFilter.toLowerCase())
@@ -17,20 +16,19 @@ const sortAndFilter = (
     categoryFilter === "All"
       ? filteredProducts
       : filteredProducts.filter((product) =>
-        product.categories.some(
-          (category) => category.name === categoryFilter
-        )
-      );
+          product.categories.some(
+            (category) => category.name === categoryFilter
+          )
+        );
   // Filtrar por marca, si existe un filtro
   filteredProducts =
     brandFilter === "All"
       ? filteredProducts
       : filteredProducts.filter(
-        (product) => product.brand.name === brandFilter
-      );
+          (product) => product.brand.name === brandFilter
+        );
   // Ordenar el arreglo filtrado
-  switch (sortType)
-  {
+  switch (sortType) {
     case "A-Z":
       return filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
     case "Z-A":
@@ -57,15 +55,16 @@ const productSlice = createSlice({
     brandFilter: "All",
     sortType: "", // tipo de ordenamiento
     page: 1,
-    paymenturl: "", //url de compra por item
+    paymenturl: "",
+    relatedProducts: [], //url de compra por item
+    banerProd: [],
+    filterBanProd: [],
   },
   reducers: {
-    pagePaginated: (state, action) =>
-    {
+    pagePaginated: (state, action) => {
       state.page = action.payload;
     },
-    allProducts: (state, action) =>
-    {
+    allProducts: (state, action) => {
       state.products = action.payload;
       state.filteredProducts = sortAndFilter(
         action.payload,
@@ -75,9 +74,11 @@ const productSlice = createSlice({
         state.sortType
       );
     },
-    allProductsForUser: (state, action) =>
-    {
-      const products = action.payload.map(product => ({ ...product, isFavorite: product.favorites.length > 0 }));
+    allProductsForUser: (state, action) => {
+      const products = action.payload.map((product) => ({
+        ...product,
+        isFavorite: product.favorites.length > 0,
+      }));
       state.products = products;
       state.filteredProducts = sortAndFilter(
         products,
@@ -87,26 +88,21 @@ const productSlice = createSlice({
         state.sortType
       );
     },
-    allCategories: (state, action) =>
-    {
+    allCategories: (state, action) => {
       state.categories = action.payload;
     },
-    allBrands: (state, action) =>
-    {
+    allBrands: (state, action) => {
       state.brands = action.payload;
     },
-    GetProduct: (state, action) =>
-    {
+    GetProduct: (state, action) => {
       const product = action.payload;
 
       state.product = product;
     },
-    clearproduct: (state) =>
-    {
+    clearproduct: (state) => {
       state.product = {};
     },
-    searchByName: (state, action) =>
-    {
+    searchByName: (state, action) => {
       state.filteredProducts = sortAndFilter(
         state.products,
         action.payload,
@@ -116,8 +112,7 @@ const productSlice = createSlice({
       );
       state.nameFilter = action.payload;
     },
-    filterByCategory: (state, action) =>
-    {
+    filterByCategory: (state, action) => {
       state.filteredProducts = sortAndFilter(
         state.products,
         state.nameFilter,
@@ -127,8 +122,7 @@ const productSlice = createSlice({
       );
       state.categoryFilter = action.payload;
     },
-    filterByBrand: (state, action) =>
-    {
+    filterByBrand: (state, action) => {
       state.filteredProducts = sortAndFilter(
         state.products,
         state.nameFilter,
@@ -138,8 +132,10 @@ const productSlice = createSlice({
       );
       state.brandFilter = action.payload;
     },
-    sort: (state, action) =>
-    {
+    setRelatedProducts: (state, action) => {
+      state.relatedProducts = action.payload;
+    },
+    sort: (state, action) => {
       state.filteredProducts = sortAndFilter(
         state.products,
         state.nameFilter,
@@ -149,10 +145,42 @@ const productSlice = createSlice({
       );
       state.sortType = action.payload;
     },
-    urlpayment(state, action)
-    {
+    urlpayment(state, action) {
       state.paymenturl = action.payload;
-    }
+    },
+    deleteProduct(state, action) {
+      const delPro = state.products.filter((e) => e.id !== action.payload);
+      state.filteredProducts = delPro;
+    },
+    deleteBaneoProduct(state, action) {
+      const banPro = state.products.filter((e) => e.id !== action.payload);
+      state.filteredProducts = banPro;
+    },
+    restoreBanProduct(state, action) {
+      const resPro = state.products.filter((e) => e.id);
+      state.filteredProducts = resPro;
+    },
+    getBanerProd(state, action) {
+      state.banerProd = action.payload;
+      state.filterBanProd = action.payload;
+    },
+    searchByProductBaner(state, action) {
+      let filtBanProd = state.filterBanProd.filter((p) =>
+        p.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      state.banerProd = filtBanProd;
+    },
+    deleteRestoreProduct(state, action) {
+      const delRes = state.banerProd.filter((e) => e.id !== action.payload);
+      state.banerProd = delRes;
+    },
+    sortProductBaner: (state, action) => {
+      const orderName =
+        action.payload === "Asc"
+          ? state.banerProd.sort((a, b) => (a.name > b.name ? 1 : -1))
+          : state.banerProd.sort((a, b) => (a.name > b.name ? -1 : 1));
+      state.banerProd = [...orderName];
+    },
   },
 });
 
@@ -169,5 +197,13 @@ export const {
   sort,
   pagePaginated,
   urlpayment,
+  deleteProduct,
+  deleteBaneoProduct,
+  restoreBanProduct,
+  getBanerProd,
+  setRelatedProducts,
+  deleteRestoreProduct,
+  searchByProductBaner,
+  sortProductBaner,
 } = productSlice.actions;
 export default productSlice.reducer;

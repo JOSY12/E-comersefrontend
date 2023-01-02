@@ -16,7 +16,7 @@ const Paginated = ({ productsByPage, products, paginated }) => {
               <li key={num} className="btn btn-sm px-1">
                 <a
                   className="w-7 p-0 hover:bg-teal-400 active:bg-teal-700 focus:outline-none focus:ring focus:ring-teal-400 text-xl "
-                  href="/#"
+                  href="/home/#"
                   onClick={() => paginated(num)}
                 >
                   {num}

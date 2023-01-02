@@ -20,6 +20,7 @@ const Card = ({
   const dispatch = useDispatch();
   const { loginWithPopup } = useAuth0();
   const { loggedUser, isAuthenticated } = useSelector((state) => state.user);
+  
 
   const addFavorite = () => {
     dispatch(addFavorites({ userId: loggedUser?.id, productId: id }));
@@ -29,7 +30,7 @@ const Card = ({
     dispatch(deleteFavorites({ userId: loggedUser?.id, productId: id }));
   };
 
-  const userid = loggedUser?.id;
+  const userId = loggedUser?.id;
 
   const amoutstock = 1;
   const product = {
@@ -42,7 +43,7 @@ const Card = ({
     quantity: parseInt(quantity),
   };
   function agregarcarrito() {
-    dispatch(addtocart(userid, id, amoutstock, product));
+    dispatch(addtocart(userId, id, amoutstock, product));
   }
   return (
     <div className="card  w-96  bg-base-100 shadow-xl m-8">

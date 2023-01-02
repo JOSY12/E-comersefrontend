@@ -1,0 +1,36 @@
+.background {
+    background: url(../../images/land.jpg) no-repeat 5% 28% fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    z-index: -2;
+}
+
+.button {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(41, 40, 40);
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 13px 20px 13px;
+    outline: 0;
+    border: 1px solid black;
+    cursor: pointer;
+    position: absolute;
+    top: 73%;
+    left: 70%;
+    background-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    text-decoration: none;
+    display: block;
+}
+
+.title {
+    position: absolute;
+    top: 57%;
+    right: 4%;
+    left: 50%;
+}

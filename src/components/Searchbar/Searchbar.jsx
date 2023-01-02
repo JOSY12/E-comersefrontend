@@ -4,18 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { search } from "../../redux/actions";
 
-function Searchbar()
-{
+function Searchbar() {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
-  const handleSearch = (event) =>
-  {
+  const handleSearch = (event) => {
     setName(event.target.value);
     dispatch(search(event.target.value));
-  }
+  };
   return (
-    <div className="mr-20">
+    <div className="mr-20 w-full">
       <div className="form-control pr-1">
         <input
           onChange={handleSearch}

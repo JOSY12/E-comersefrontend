@@ -3,20 +3,20 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC9EF6TQ8Ohvq5hCg1o-qho_PFF7lNtPgw",
-  authDomain: "cloudinary-14ccf.firebaseapp.com",
-  projectId: "cloudinary-14ccf",
-  storageBucket: "cloudinary-14ccf.appspot.com",
-  messagingSenderId: "499851684704",
-  appId: "1:499851684704:web:b43bc05c8afcd3e1334c05",
+    apiKey: `${process.env.REACT_APP_FB_API_KEY}`,
+    authDomain: `${process.env.REACT_APP_FB_AUTH_DOMAIN}`,
+    projectId: `${process.env.REACT_APP_FB_PROJECT_ID}`,
+    storageBucket: `${process.env.REACT_APP_FB_STORAGE}`,
+    messagingSenderId: `${process.env.REACT_APP_FB_MESSAGING}`,
+    appId: `${process.env.REACT_APP_FB_API_ID}`,
 };
 
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 
 export async function uploadFile(file) {
-  const storageRef = ref(storage, "img" + v4());
-  await uploadBytes(storageRef, file);
-  const url = await getDownloadURL(storageRef);
-  return url;
+    const storageRef = ref(storage, "img" + v4());
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    return url;
 }

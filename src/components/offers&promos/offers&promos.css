@@ -1,0 +1,40 @@
+ #carrousel {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+     background-color: rgba(0, 0, 0, 0.542);
+     overflow: hidden;
+ }
+
+.carrouselText {
+    color: aliceblue;
+    
+    animation: moviment 30s linear infinite normal;
+   
+
+}
+
+
+
+
+@keyframes moviment {
+    0%{
+        height: 0px;
+        transform: translateX(120%);
+    }
+    5% { 
+        transform: translateX(120%);
+        height: 2em;
+     }
+     95% {
+        transform: translateX(-120%);
+        height: 2em;
+     }
+     100% {
+        transform: translateX(-120%);
+        height: 0px;
+     }
+
+    
+}

@@ -1,0 +1,51 @@
+
+
+#footerContainer {
+    width: 100%;
+    background-color: black;
+    color: whitesmoke;
+    height: fit-content;
+    position: fixed;
+    bottom: 0;
+    max-height: 600px;
+    overflow: hidden;
+   
+}
+
+.footerText {
+    font-size: 1.5em;
+    width: 100%;
+    display: block;
+}
+.footer {
+    width: 100%;
+    padding: 1%;
+}
+
+.Container {
+    display: block;
+    margin: auto;
+    width: fit-content;
+    position: relative;
+    text-align: center;
+}
+.link {
+    text-decoration: none;
+    font-size: 1.3em;
+}
+
+.link:hover {
+    color: darkgray;    
+}
+
+.icon {
+    filter: invert(100%);
+    width: 1.5em;
+    display: inline-flex;
+    margin-right: 1%;
+}
+.emailContainer{
+    display: inline-flex;
+    margin-top: 4%;
+    
+}
